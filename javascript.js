@@ -10,10 +10,23 @@ ELSE nobody wins
 */
 
 function getComputerChoice() {
-    return (parseInt(Math.random() * 100) % 3);
+    let choice = (parseInt(Math.random() * 99) % 3);
+
+    switch (choice){
+        case 0:
+            return "Rock";
+        case 1:
+            return "Paper";
+        case 2:
+            return "Scissors";
+        default:
+            return "ERROR: Invalid Choice"
+    }
+
 }
 
 function getHumanChoice() {
+    return prompt('Choose', 'Rock / Paper / Scissors');
 
 }
 
@@ -22,3 +35,4 @@ function playRound() {
 }
 
 console.log(`Computer's Choice: ${getComputerChoice()}`);
+console.log(`Player's Choice: ${getHumanChoice()}`)
