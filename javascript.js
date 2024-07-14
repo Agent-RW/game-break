@@ -14,25 +14,53 @@ function getComputerChoice() {
 
     switch (choice){
         case 0:
-            return "Rock";
+            return "rock";
         case 1:
-            return "Paper";
+            return "paper";
         case 2:
-            return "Scissors";
+            return "scissors";
         default:
             return "ERROR: Invalid Choice"
     }
 
 }
 
-function getHumanChoice() {
-    return prompt('Choose', 'Rock / Paper / Scissors');
+function getPlayerChoice() {
+    let playerChoice = prompt('Rock / Paper / Scissors');
+    return playerChoice.trim().toLocaleLowerCase();
 
 }
 
-function playRound() {
+function playRound(computerChoice, playerChoice) {
+    let choices = `(Player) ${playerChoice} : ${computerChoice} (CPU) | `;
+    let winAlert = 'Not too bad';
+    let loseAlert = 'You suck';
+    let drawAlert = 'Until next time';
 
+    if (playerChoice === computerChoice) {
+        alert(choices + drawAlert);
+    }else if (playerChoice === 'rock') {
+        if (computerChoice === 'scissors') {
+            alert(choices + winAlert)
+        }else {
+            alert(choices + loseAlert);
+        }
+    }else if (playerChoice === 'paper') {
+        if (computerChoice === 'rock') {
+            alert(choices + winAlert);
+        }else {
+            alert(choices + loseAlert);
+        }
+    }else if (playerChoice === 'scissors') {
+        if (computerChoice === 'paper') {
+            alert(choices + winAlert);
+        }else {
+            alert(choices + loseAlert);
+        }
+    }else {
+        alert('Have you never player rock, paper, scissors?');
+    }
 }
 
-console.log(`Computer's Choice: ${getComputerChoice()}`);
-console.log(`Player's Choice: ${getHumanChoice()}`)
+
+playRound(getComputerChoice(), getPlayerChoice());
