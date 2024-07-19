@@ -73,31 +73,23 @@ function playRound(computerChoice, playerChoice) {
     return victor;
 }
 
-function playGame(){
-    playerScore = 0;
-    computerScore = 0;
-    let goal = 5;
-    let roundVictor;
-    let gameVictor;
+function onSelect(event) {
+    let selected = event.target.textContent;
 
-
-    while (playerScore < goal && computerScore < goal) {
-        roundVictor = playRound(getComputerChoice(), getPlayerChoice());
-
-        if (roundVictor === "player") {
-            playerScore ++;
-        }else if (roundVictor === "cpu") {
-            computerScore ++;
-        }
-
-        alert(`Score | (Player) ${playerScore} : ${computerScore} (CPU)`);
-    }
-
-    gameVictor = (playerScore > computerScore) ? "Player" : "CPU";
-    alert(`${gameVictor} WINS!!!`);
-
-    playGame();
+    playRound(getComputerChoice(), selected);
 }
 
+const rpsContainer = document.querySelector("div");
+const rockBtn = document.createElement("button");
+const paperBtn = document.createElement("button");
+const scissorsBtn = document.createElement("button");
+rockBtn.textContent = "Rock";
+paperBtn.textContent = "Paper";
+scissorsBtn.textContent = "Scissors";
 
-playGame();
+
+
+[rockBtn, paperBtn, scissorsBtn].forEach((button) => {
+    button.addEventListener("click", onSelect);
+    rpsContainer.appendChild(button);
+});
